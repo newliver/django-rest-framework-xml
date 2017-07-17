@@ -14,11 +14,13 @@ from .compat import etree
 
 
 class XMLParser(BaseParser):
+
     """
     XML parser.
     """
 
-    media_type = 'application/xml'
+    # wechat use 'text/xml' media_type
+    media_type = getattr(settings, 'DRF_XML_MEDIA_TYPE', 'text/xml')
 
     def parse(self, stream, media_type=None, parser_context=None):
         """
